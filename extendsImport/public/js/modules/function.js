@@ -126,16 +126,16 @@ export function tour() {
       );
       bossAttack();
     } else if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
-        console.log(
-            `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
-          );
-          boss.pv -= monGuerrier.pv;
-          console.log(
-            `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
-          );
-          bossAttack();
+      console.log(
+        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      boss.pv -= monGuerrier.pv;
+      console.log(
+        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
     } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
-        boss.pv -= monArcher.pv;
+      boss.pv -= monArcher.pv;
       console.log(
         `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
       );
@@ -155,26 +155,29 @@ export function tour() {
       );
       bossAttack();
     } else if (monArcher.pv == 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
-        boss.pv -= monGuerrier.pv;
+      boss.pv -= monGuerrier.pv;
       console.log(
         `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
     } else if (monArcher.pv == 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
-        boss.pv -= monMage.pv;
+      boss.pv -= monMage.pv;
       console.log(
         `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
     } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv == 0) {
-        boss.pv -= monArcher.pv;
+      boss.pv -= monArcher.pv;
       console.log(
         `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
+    } else {
+      console.log(`Tous vos Héros sont morts, Fin de la partie..`);
     }
-
-
+  }
+  if (boss.pv <= 20) {
+    enigme(boss);
   }
 }
 
@@ -327,7 +330,7 @@ export function monAction() {
   actionMonGuerrier();
 }
 
-export function enigme(boss) {
+export function enigme() {
   let enigme = [];
   let soluce = [];
   enigme.push(`Quel est le pain préféré du magicien ?`); //la baguette
@@ -344,25 +347,24 @@ export function enigme(boss) {
   );
   if (reponse == soluce[hasard]) {
     boss.pv = 0;
+    console.log(`Bien joué, vous avez battu ${boss.nom} !!`);
   } else {
     reponse = prompt(`FAUUUUX ! 2e chance : ${enigme[hasard]}`);
     if (reponse == soluce[hasard]) {
       boss.pv = 0;
+      console.log(`Bien joué, vous avez battu ${boss.nom} !!`);
     } else {
       reponse = prompt(`FAUUUUX ! Dernière chance : ${enigme[hasard]}`);
       if (reponse == soluce[hasard]) {
         boss.pv = 0;
+        console.log(`Bien joué, vous avez battu ${boss.nom} !!`);
       } else {
         monArcher.pv = 0;
         monGuerrier.pv = 0;
         monMage.pv = 0;
+        console.log(`Fin de la partie, vos mauvaises réponses successives ont couté la vie à vos Héros..`);
       }
     }
   }
 }
 
-export function lowHP(boss) {
-  if (boss.pv <= 20) {
-    enigme(boss);
-  }
-}
