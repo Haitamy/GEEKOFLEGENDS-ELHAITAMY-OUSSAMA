@@ -1,4 +1,134 @@
-import { monGuerrier, monArcher, monMage} from "./instance.js";
+import { monGuerrier, monArcher, monMage, boss } from "./instance.js";
+
+function nomHeros() {
+  monArcher.nom = prompt(
+    `Bienvenue sur Geek Of Legends, pour commencer vous devez choisir un nom pour votre Archer`
+  );
+  monGuerrier.nom = prompt(`Maintenant, choisissez un nom pour votre guerrier`);
+  monMage.nom = prompt(`Enfin, choisissez un nom pour votre Mage`);
+}
+function pvHeros() {
+  do {
+    let pv = 200;
+    monArcher.pv = parseInt(
+      prompt(
+        `Vous devez désormais répartir 200 points de vie entre vos héros, commençons par ${monArcher.nom} (si vous dépasser les 200 pv de groupe, vous devrez recommencer)`
+      )
+    );
+    while (Number.isNaN(monArcher.pv) === true) {
+      monArcher.pv = parseInt(
+        prompt(
+          ` Veuillez entrer une quantité valide de pv pour ${monArcher.nom}`
+        )
+      );
+    }
+    pv -= monArcher.pv;
+    monGuerrier.pv = parseInt(
+      prompt(
+        `Ensuite, veuillez entrer un nombre de pv pour ${monGuerrier.nom} sachant qu'il vous reste ${pv} pv à attribuer`
+      )
+    );
+    while (Number.isNaN(monGuerrier.pv) === true) {
+      monGuerrier.pv = parseInt(
+        prompt(
+          `Veuillez entrer une quantité valide de pv pour ${monGuerrier.nom}`
+        )
+      );
+    }
+    pv -= monGuerrier.pv;
+    monMage.pv = parseInt(
+      prompt(
+        `Enfin, veuillez entrer un nombre de pv pour ${monMage.nom} sachant qu'il vous reste ${pv} pv à attribuer`
+      )
+    );
+    while (Number.isNaN(monMage.pv) === true) {
+      monMage.pv = parseInt(
+        prompt(`Veuillez entrer une quantité valide de pv pour ${monMage.nom}`)
+      );
+    }
+  } while (monArcher.pv + monGuerrier.pv + monMage.pv > 200);
+}
+function paHeros() {
+  do {
+    let pa = 50;
+    monArcher.pa = parseInt(
+      prompt(
+        `Vous devez désormais répartir 50 points d'action entre vos héros, commençons par ${monArcher.nom} (si vous dépasser les 50 pa de groupe, vous devrez recommencer)`
+      )
+    );
+    while (Number.isNaN(monArcher.pa) === true) {
+      monArcher.pa = parseInt(
+        prompt(
+          ` Veuillez entrer une quantité valide de pa pour ${monArcher.nom}`
+        )
+      );
+    }
+    pa -= monArcher.pa;
+    monGuerrier.pa = parseInt(
+      prompt(
+        `Ensuite, veuillez entrer un nombre de pa pour ${monGuerrier.nom} sachant qu'il vous reste ${pa} pa à attribuer`
+      )
+    );
+    while (Number.isNaN(monGuerrier.pa) === true) {
+      monGuerrier.pa = parseInt(
+        prompt(
+          `Veuillez entrer une quantité valide de pa pour ${monGuerrier.nom}`
+        )
+      );
+    }
+    pa -= monGuerrier.pa;
+    monMage.pa = parseInt(
+      prompt(
+        `Enfin, veuillez entrer un nombre de pa pour ${monMage.nom} sachant qu'il vous reste ${pa} pa à attribuer`
+      )
+    );
+    while (Number.isNaN(monMage.pa) === true) {
+      monMage.pa = parseInt(
+        prompt(`Veuillez entrer une quantité valide de pa pour ${monMage.nom}`)
+      );
+    }
+  } while (monArcher.pa + monGuerrier.pa + monMage.pa > 200);
+}
+// function mana() {
+//   let mana = [7, 9, 11];
+//   let random = parseInt(Math.random() * 3);
+//   let dmgArcher = monArcher.pa;
+//   monMage.mana = mana[random];
+
+//   if (monMage.mana == 0) {
+//     monArcher.pa = 0;
+//     monMage.mana = mana[random];
+//   } else {
+//     monArcher.pa = dmgArcher;
+//   }
+// }
+
+export function mesHeros() {
+  nomHeros();
+  pvHeros();
+  paHeros();
+}
+export function tour() {
+  let teamPV = monArcher.pv + monGuerrier.pv + monMage.pv;
+  while (boss.pv > 0 || teamPV > 0) {
+    if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv > 0) {
+      boss.pv -= monArcher.pv;
+      console.log(
+        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      boss.pv -= monGuerrier.pv;
+      console.log(
+        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      boss.pv -= monGuerrier.pv;
+      console.log(
+        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    }
+    boss.pv = 0;
+  }
+}
 
 export function rage(tour) {
   if (tour % 4 == 0) {
@@ -11,39 +141,66 @@ export function rage(tour) {
     console.log(`Rage : ${monGuerrier.rage}, PA : ${monGuerrier.pa}`);
   }
 }
-export function bossAttack(boss){
-    if (chanceMonArcher<chanceMonGuerrier && chancemonArcher<chanceMonMage) {
-        monArcher.pv-=boss.pa
-        if(actionMonArcher=='d'){
-            chanceMonArcher+=0.5
-        } else {
-            chanceMonArcher+=1
-        }
+export function bossAttack() {
+  if (chanceMonArcher < chanceMonGuerrier && chancemonArcher < chanceMonMage) {
+    monArcher.pv -= boss.pa;
+    if (monArcher.pv > 0) {
+      console.log(
+        `${monArcher.nom} a été attaqué par ${boss.nom} qui lui a causé ${boss.pa} dégats le laissant à ${monArcher.pv} pv`
+      );
+      if (actionMonArcher == "d") {
+        chanceMonArcher += 0.5;
+      } else {
+        chanceMonArcher += 1;
+      }
+    } else {
+      console.log(
+        `${boss.name} vient de tuer ${monArcher.nom} en lui infligeant ${boss.pa} dégats`
+      );
     }
-    if (chanceMonGuerrier<chanceMonArcher && chanceMonGuerrier<chanceMonMage) {
-        monGuerrier.pv-=boss.pa
-        if(actionMonGuerrier=='d'){
-            chanceMonGuerrier+=0.5
-        } else {
-            chanceMonGuerrier+=1
-        }
+  }
+  if (
+    chanceMonGuerrier < chanceMonArcher &&
+    chanceMonGuerrier < chanceMonMage
+  ) {
+    monGuerrier.pv -= boss.pa;
+    if (monGuerrier.pv > 0) {
+      console.log(
+        `${monGuerrier.nom} a été attaqué par ${boss.nom} qui lui a causé ${boss.pa} dégats le laissant à ${monGuerrier.pv} pv`
+      );
+      if (actionMonGuerrier == "d") {
+        chanceMonGuerrier += 0.5;
+      } else {
+        chanceMonGuerrier += 1;
+      }
+    } else {
+      console.log(
+        `${boss.name} vient de tuer ${monGuerrier.nom} en lui infligeant ${boss.pa} dégats`
+      );
     }
-    if(chanceMonMage<chanceMonGuerrier && chanceMonMage<chanceMonArcher){
-        monMage.pv-=boss.pa
-        if(actionMonMage=='d'){
-            chancemMnMage+=0.5
-        } else {
-            chanceMonMage+=1
-        }
+  }
+  if (chanceMonMage < chanceMonGuerrier && chanceMonMage < chanceMonArcher) {
+    monMage.pv -= boss.pa;
+    if (monMage.pv > 0) {
+      console.log(
+        `${monMage.nom} a été attaqué par ${boss.nom} qui lui a causé ${boss.pa} dégats le laissant à ${monMage.pv} pv`
+      );
+      if (actionMonMage == "d") {
+        chancemMonMage += 0.5;
+      } else {
+        chanceMonMage += 1;
+      }
+    } else {
+      console.log(
+        `${boss.name} vient de tuer ${monMage.nom} en lui infligeant ${boss.pa} dégats`
+      );
     }
+  }
 }
 
-
-
-
-let actionMonArcher = prompt(`action de ${monArcher} ? (a/d ou rien)`);
-export function actionmonArcher() {
-  switch (action) {
+function actionMonArcher() {
+  let _actionMonArcher = prompt(`action de ${monArcher} ? (a/d ou rien)`);
+  switch (_actionMonArcher) {
     case "d":
       monArcher.pa = monArcher.pa * 0.5;
       monArcher.pv = monArcher.pv * 2.5;
@@ -59,13 +216,15 @@ export function actionmonArcher() {
       );
       break;
     default:
-      console.log(`aucun changement n'a été effectué aux stats de ${monArcher.nom} `);
+      console.log(
+        `aucun changement n'a été effectué aux stats de ${monArcher.nom} `
+      );
       break;
   }
 }
-let actionMonMage = prompt(`action de ${monMage.nom} ? (a/d ou rien)`);
-export function actionmonMage() {
-  switch (action) {
+function actionMonMage() {
+  let _actionMonMage = prompt(`action de ${monMage.nom} ? (a/d ou rien)`);
+  switch (_actionMonMage) {
     case "d":
       monMage.pa = monMage.pa * 0.5;
       monMage.pv = monMage.pv * 2.5;
@@ -81,14 +240,18 @@ export function actionmonMage() {
       );
       break;
     default:
-      console.log(`aucun changement n'a été effectué aux stats de ${monMage.nom} `);
+      console.log(
+        `aucun changement n'a été effectué aux stats de ${monMage.nom} `
+      );
       break;
   }
 }
 
-let actionMonGuerrier= prompt(`action de ${monGuerrier.nom} ? (a/d ou rien)`);
-export function actionMonGuerrier() {
-  switch (action) {
+function actionMonGuerrier() {
+  let _actionMonGuerrier = prompt(
+    `action de ${monGuerrier.nom} ? (a/d ou rien)`
+  );
+  switch (_actionMonGuerrier) {
     case "d":
       monGuerrier.pa = monGuerrier.pa * 0.5;
       monGuerrier.pv = monGuerrier.pv * 2.5;
@@ -104,9 +267,16 @@ export function actionMonGuerrier() {
       );
       break;
     default:
-      console.log(`aucun changement n'a été effectué aux stats de ${monGuerrier.nom} `);
+      console.log(
+        `aucun changement n'a été effectué aux stats de ${monGuerrier.nom} `
+      );
       break;
   }
+}
+export function monAction() {
+  actionMonArcher();
+  actionMonMage();
+  actionMonGuerrier();
 }
 
 export function enigme(boss) {
@@ -125,19 +295,19 @@ export function enigme(boss) {
     `Pour gagner, vous devez répondre à cette énigme en un mot : ${enigme[hasard]}`
   );
   if (reponse == soluce[hasard]) {
-    boss.pv=0
+    boss.pv = 0;
   } else {
     reponse = prompt(`FAUUUUX ! 2e chance : ${enigme[hasard]}`);
     if (reponse == soluce[hasard]) {
-      boss.pv=0
+      boss.pv = 0;
     } else {
       reponse = prompt(`FAUUUUX ! Dernière chance : ${enigme[hasard]}`);
       if (reponse == soluce[hasard]) {
-        boss.pv=0
+        boss.pv = 0;
       } else {
-        monArcher.pv=0
-        monGuerrier.pv=0
-        monMage.pv=0
+        monArcher.pv = 0;
+        monGuerrier.pv = 0;
+        monMage.pv = 0;
       }
     }
   }
