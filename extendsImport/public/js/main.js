@@ -5,6 +5,15 @@ monArcher.nom=prompt(`Bienvenue sur Geek Of Legends, pour commencer vous devez c
 monGuerrier.nom=prompt(`Maintenant, choisissez un nom pour votre guerrier`)
 monMage.nom=prompt(`Enfin, choisissez un nom pour votre Mage`)
 
+let pv = 200
+monArcher.pv
+monGuerrier.pv
+monMage.pv
+while(monArcher.pv+monGuerrier.pv+monMage.pv>200){
+    monArcher.pv=parseInt(prompt(`Vous devez désormais répartir 200 points de vie entre vos héros, commençons par ${monArcher.nom}`))
+    monGuerrier.pv
+    monMage.pv
+}
 // let tour 
 // for (let i = 1; i < 10; i++) {
 //     tour = i

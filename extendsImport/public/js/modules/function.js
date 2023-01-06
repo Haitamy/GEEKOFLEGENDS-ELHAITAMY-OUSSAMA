@@ -6,7 +6,7 @@ export function rage(tour) {
     monGuerrier.rage = 0;
     console.log(`Rage : ${monGuerrier.rage}, PA : ${monGuerrier.pa}`);
   } else {
-    tmonGuerrierpa = 10;
+    monGuerrier.pa = 10;
     monGuerrier.rage = tour % 4;
     console.log(`Rage : ${monGuerrier.rage}, PA : ${monGuerrier.pa}`);
   }
@@ -15,25 +15,25 @@ export function bossAttack(boss){
     if (chanceMonArcher<chanceMonGuerrier && chancemonArcher<chanceMonMage) {
         monArcher.pv-=boss.pa
         if(actionMonArcher=='d'){
-            chanceMonArcher+=1
-        } else {
             chanceMonArcher+=0.5
+        } else {
+            chanceMonArcher+=1
         }
     }
     if (chanceMonGuerrier<chanceMonArcher && chanceMonGuerrier<chanceMonMage) {
         monGuerrier.pv-=boss.pa
         if(actionMonGuerrier=='d'){
-            chanceMonGuerrier+=1
-        } else {
             chanceMonGuerrier+=0.5
+        } else {
+            chanceMonGuerrier+=1
         }
     }
     if(chanceMonMage<chanceMonGuerrier && chanceMonMage<chanceMonArcher){
         monMage.pv-=boss.pa
         if(actionMonMage=='d'){
-            chancemMnMage+=1
+            chancemMnMage+=0.5
         } else {
-            chanceMonMage+=0.5
+            chanceMonMage+=1
         }
     }
 }

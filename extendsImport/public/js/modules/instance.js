@@ -14,3 +14,5 @@ export let chanceArcher = Math.random()
 export let chanceGuerrier =Math.random()
 export let chanceMage =Math.random()
 
+
+
