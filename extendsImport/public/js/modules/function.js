@@ -1,4 +1,4 @@
-import { trynda, ashe, xerath } from "./instance.js";
+import { trynda, ashe, xerath} from "./instance.js";
 
 export function rage(tour) {
   if (tour % 4 == 0) {
@@ -11,9 +11,34 @@ export function rage(tour) {
     console.log(`Rage : ${trynda.rage}, PA : ${trynda.pa}`);
   }
 }
+export function bossAttack(boss){
+    if (chanceAshe<chanceTrynda && chanceAshe<chanceXerath) {
+        ashe.pv-=boss.pa
+        
+    }
+    if (chanceTrynda<chanceAshe && chanceTrynda<chanceXerath) {
+        trynda.pv-=boss.pa
+        at
+    }
+    if(chanceXerath<chanceTrynda && chanceXerath<chanceAshe){
+        xerath.pv-=boss.pa
+        at
+    }
+}
 
+let chanceAshe = Math.random()
+let chanceTrynda =Math.random()
+let chanceXerath =Math.random()
+export function chanceToBeAttacked() {
+    if (actionAshe=='d') {
+        chanceAshe+=1
+    } else {
+        chanceAshe+=.5
+    }
+}
+
+let actionAshe = prompt("action de Ashe ? (a/d ou rien)");
 export function actionAshe() {
-  let action = prompt("action de Ashe ? (a/d ou rien)");
   switch (action) {
     case "d":
       ashe.pa = ashe.pa * 0.5;
@@ -34,8 +59,8 @@ export function actionAshe() {
       break;
   }
 }
+let actionXerath = prompt("action de xerath ? (a/d ou rien)");
 export function actionXerath() {
-  let action = prompt("action de xerath ? (a/d ou rien)");
   switch (action) {
     case "d":
       xerath.pa = xerath.pa * 0.5;
@@ -57,8 +82,8 @@ export function actionXerath() {
   }
 }
 
+let actionTrynda= prompt("action de Tryndamere ? (a/d ou rien)");
 export function actionTrynda() {
-  let action = prompt("action de Tryndamere ? (a/d ou rien)");
   switch (action) {
     case "d":
       trynda.pa = trynda.pa * 0.5;
