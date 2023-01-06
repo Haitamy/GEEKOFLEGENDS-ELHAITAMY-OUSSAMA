@@ -1,4 +1,16 @@
+import { trynda } from "./instance.js";
 
+export function rage(tour) {
+  if (tour % 4 == 0) {
+    trynda.pa = 12.5;
+    trynda.rage = 0;
+    console.log(`Rage : ${trynda.rage}, PA : ${trynda.pa}`);
+  } else {
+    trynda.pa = 10;
+    trynda.rage = tour % 4;
+    console.log(`Rage : ${trynda.rage}, PA : ${trynda.pa}`);
+  }
+}
 
 export function enigme(boss) {
   let enigme = [];

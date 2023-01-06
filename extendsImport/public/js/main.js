@@ -1,3 +1,8 @@
-import { enigme } from "./modules/function.js";
+import { rage } from "./modules/function.js";
 import { venom } from "./modules/instance.js";
-enigme(venom.nom)
+
+let tour 
+for (let i = 1; i < 10; i++) {
+    tour = i
+    rage(tour)
+}
