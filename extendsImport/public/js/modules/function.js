@@ -1,118 +1,110 @@
-import { trynda, ashe, xerath} from "./instance.js";
+import { monGuerrier, monArcher, monMage} from "./instance.js";
 
 export function rage(tour) {
   if (tour % 4 == 0) {
-    trynda.pa = 12.5;
-    trynda.rage = 0;
-    console.log(`Rage : ${trynda.rage}, PA : ${trynda.pa}`);
+    monGuerrier.pa = 12.5;
+    monGuerrier.rage = 0;
+    console.log(`Rage : ${monGuerrier.rage}, PA : ${monGuerrier.pa}`);
   } else {
-    trynda.pa = 10;
-    trynda.rage = tour % 4;
-    console.log(`Rage : ${trynda.rage}, PA : ${trynda.pa}`);
+    tmonGuerrierpa = 10;
+    monGuerrier.rage = tour % 4;
+    console.log(`Rage : ${monGuerrier.rage}, PA : ${monGuerrier.pa}`);
   }
 }
 export function bossAttack(boss){
-    if (chanceAshe<chanceTrynda && chanceAshe<chanceXerath) {
-        ashe.pv-=boss.pa
-        if(actionAshe=='d'){
-            chanceAshe+=1
+    if (chanceMonArcher<chanceMonGuerrier && chancemonArcher<chanceMonMage) {
+        monArcher.pv-=boss.pa
+        if(actionMonArcher=='d'){
+            chanceMonArcher+=1
         } else {
-            chanceAshe+=0.5
+            chanceMonArcher+=0.5
         }
     }
-    if (chanceTrynda<chanceAshe && chanceTrynda<chanceXerath) {
-        trynda.pv-=boss.pa
-        if(actionTrynda=='d'){
-            chanceTrynda+=1
+    if (chanceMonGuerrier<chanceMonArcher && chanceMonGuerrier<chanceMonMage) {
+        monGuerrier.pv-=boss.pa
+        if(actionMonGuerrier=='d'){
+            chanceMonGuerrier+=1
         } else {
-            chanceTrynda+=0.5
+            chanceMonGuerrier+=0.5
         }
     }
-    if(chanceXerath<chanceTrynda && chanceXerath<chanceAshe){
-        xerath.pv-=boss.pa
-        if(actionXerath=='d'){
-            chanceXerath+=1
+    if(chanceMonMage<chanceMonGuerrier && chanceMonMage<chanceMonArcher){
+        monMage.pv-=boss.pa
+        if(actionMonMage=='d'){
+            chancemMnMage+=1
         } else {
-            chanceXerath+=0.5
+            chanceMonMage+=0.5
         }
     }
 }
 
-let chanceAshe = Math.random()
-let chanceTrynda =Math.random()
-let chanceXerath =Math.random()
-export function chanceToBeAttacked() {
-    if (actionAshe=='d') {
-        chanceAshe+=1
-    } else {
-        chanceAshe+=.5
-    }
-}
 
-let actionAshe = prompt("action de Ashe ? (a/d ou rien)");
-export function actionAshe() {
+
+
+let actionMonArcher = prompt(`action de ${monArcher} ? (a/d ou rien)`);
+export function actionmonArcher() {
   switch (action) {
     case "d":
-      ashe.pa = ashe.pa * 0.5;
-      ashe.pv = ashe.pv * 2.5;
+      monArcher.pa = monArcher.pa * 0.5;
+      monArcher.pv = monArcher.pv * 2.5;
       console.log(
-        `Ashe est désormais un défenseur. Nouvelles stats : pa : ${ashe.pa}, pv : ${ashe.pv} `
+        `${monArcher} est désormais un défenseur. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
       );
       break;
     case "a":
-      ashe.pa = ashe.pa * 1.4;
-      ashe.pv = ashe.pv * 0.75;
+      monArcher.pa = monArcher.pa * 1.4;
+      monArcher.pv = monArcher.pv * 0.75;
       console.log(
-        `Ashe est désormais un attaquant. Nouvelles stats : pa : ${ashe.pa}, pv : ${ashe.pv} `
+        `${monArcher} est désormais un attaquant. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
       );
       break;
     default:
-      console.log(`aucun changement n'a été effectué aux stats de Ashe `);
+      console.log(`aucun changement n'a été effectué aux stats de ${monArcher} `);
       break;
   }
 }
-let actionXerath = prompt("action de xerath ? (a/d ou rien)");
-export function actionXerath() {
+let actionMonMage = prompt(`action de ${monMage} ? (a/d ou rien)`);
+export function actionmonMage() {
   switch (action) {
     case "d":
-      xerath.pa = xerath.pa * 0.5;
-      xerath.pv = xerath.pv * 2.5;
+      monMage.pa = monMage.pa * 0.5;
+      monMage.pv = monMage.pv * 2.5;
       console.log(
-        `Xerath est désormais un défenseur. Nouvelles stats : pa : ${xerath.pa}, pv : ${xerath.pv} `
+        `${monMage} est désormais un défenseur. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
       );
       break;
     case "a":
-      xerath.pa = xerath.pa * 1.4;
-      xerath.pv = xerath.pv * 0.75;
+      monMage.pa = monMage.pa * 1.4;
+      monMage.pv = monMage.pv * 0.75;
       console.log(
-        `Xerath est désormais un attaquant. Nouvelles stats : pa : ${xerath.pa}, pv : ${xerath.pv} `
+        `${monMage} est désormais un attaquant. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
       );
       break;
     default:
-      console.log(`aucun changement n'a été effectué aux stats de Xerath `);
+      console.log(`aucun changement n'a été effectué aux stats de ${monMage} `);
       break;
   }
 }
 
-let actionTrynda= prompt("action de Tryndamere ? (a/d ou rien)");
-export function actionTrynda() {
+let actionMonGuerrier= prompt(`action de ${monGuerrier.nom} ? (a/d ou rien)`);
+export function actionMonGuerrier() {
   switch (action) {
     case "d":
-      trynda.pa = trynda.pa * 0.5;
-      trynda.pv = trynda.pv * 2.5;
+      monGuerrier.pa = monGuerrier.pa * 0.5;
+      monGuerrier.pv = monGuerrier.pv * 2.5;
       console.log(
-        `Trynda est désormais un défenseur. Nouvelles stats : pa : ${trynda.pa}, pv : ${trynda.pv} `
+        `${monGuerrier.nom} est désormais un défenseur. Nouvelles stats : pa : ${monGuerrier.pa}, pv : ${monGuerrier.pv} `
       );
       break;
     case "a":
-      trynda.pa = trynda.pa * 1.4;
-      trynda.pv = trynda.pv * 0.75;
+      monGuerrier.pa = monGuerrier.pa * 1.4;
+      monGuerrier.pv = monGuerrier.pv * 0.75;
       console.log(
-        `Trynda est désormais un attaquant. Nouvelles stats : pa : ${trynda.pa}, pv : ${trynda.pv} `
+        `${monGuerrier.nom} est désormais un attaquant. Nouvelles stats : pa : ${monGuerrier.pa}, pv : ${monGuerrier.pv} `
       );
       break;
     default:
-      console.log(`aucun changement n'a été effectué aux stats de Trynda `);
+      console.log(`aucun changement n'a été effectué aux stats de ${monGuerrier.nom} `);
       break;
   }
 }
@@ -143,9 +135,9 @@ export function enigme(boss) {
       if (reponse == soluce[hasard]) {
         boss.pv=0
       } else {
-        ashe.pv=0
-        trynda.pv=0
-        xerath.pv=0
+        monArcher.pv=0
+        monGuerrier.pv=0
+        monMage.pv=0
       }
     }
   }
