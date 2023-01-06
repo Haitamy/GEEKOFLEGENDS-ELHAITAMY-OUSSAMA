@@ -34,6 +34,28 @@ export function actionAshe() {
       break;
   }
 }
+export function actionXerath() {
+  let action = prompt("action de xerath ? (a/d ou rien)");
+  switch (action) {
+    case "d":
+      xerath.pa = xerath.pa * 0.5;
+      xerath.pv = xerath.pv * 2.5;
+      console.log(
+        `Xerath est désormais un défenseur. Nouvelles stats : pa : ${xerath.pa}, pv : ${xerath.pv} `
+      );
+      break;
+    case "a":
+      xerath.pa = xerath.pa * 1.4;
+      xerath.pv = xerath.pv * 0.75;
+      console.log(
+        `Xerath est désormais un attaquant. Nouvelles stats : pa : ${xerath.pa}, pv : ${xerath.pv} `
+      );
+      break;
+    default:
+      console.log(`aucun changement n'a été effectué aux stats de Xerath `);
+      break;
+  }
+}
 
 export function actionTrynda() {
   let action = prompt("action de Tryndamere ? (a/d ou rien)");
