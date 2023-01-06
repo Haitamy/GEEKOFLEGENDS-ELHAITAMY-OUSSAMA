@@ -14,15 +14,27 @@ export function rage(tour) {
 export function bossAttack(boss){
     if (chanceAshe<chanceTrynda && chanceAshe<chanceXerath) {
         ashe.pv-=boss.pa
-        
+        if(actionAshe=='d'){
+            chanceAshe+=1
+        } else {
+            chanceAshe+=0.5
+        }
     }
     if (chanceTrynda<chanceAshe && chanceTrynda<chanceXerath) {
         trynda.pv-=boss.pa
-        at
+        if(actionTrynda=='d'){
+            chanceTrynda+=1
+        } else {
+            chanceTrynda+=0.5
+        }
     }
     if(chanceXerath<chanceTrynda && chanceXerath<chanceAshe){
         xerath.pv-=boss.pa
-        at
+        if(actionXerath=='d'){
+            chanceXerath+=1
+        } else {
+            chanceXerath+=0.5
+        }
     }
 }
 
