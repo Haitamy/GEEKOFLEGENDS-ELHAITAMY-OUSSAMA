@@ -48,40 +48,40 @@ export function actionmonArcher() {
       monArcher.pa = monArcher.pa * 0.5;
       monArcher.pv = monArcher.pv * 2.5;
       console.log(
-        `${monArcher} est désormais un défenseur. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
+        `${monArcher.nom} est désormais un défenseur. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
       );
       break;
     case "a":
       monArcher.pa = monArcher.pa * 1.4;
       monArcher.pv = monArcher.pv * 0.75;
       console.log(
-        `${monArcher} est désormais un attaquant. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
+        `${monArcher.nom} est désormais un attaquant. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
       );
       break;
     default:
-      console.log(`aucun changement n'a été effectué aux stats de ${monArcher} `);
+      console.log(`aucun changement n'a été effectué aux stats de ${monArcher.nom} `);
       break;
   }
 }
-let actionMonMage = prompt(`action de ${monMage} ? (a/d ou rien)`);
+let actionMonMage = prompt(`action de ${monMage.nom} ? (a/d ou rien)`);
 export function actionmonMage() {
   switch (action) {
     case "d":
       monMage.pa = monMage.pa * 0.5;
       monMage.pv = monMage.pv * 2.5;
       console.log(
-        `${monMage} est désormais un défenseur. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
+        `${monMage.nom} est désormais un défenseur. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
       );
       break;
     case "a":
       monMage.pa = monMage.pa * 1.4;
       monMage.pv = monMage.pv * 0.75;
       console.log(
-        `${monMage} est désormais un attaquant. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
+        `${monMage.nom} est désormais un attaquant. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
       );
       break;
     default:
-      console.log(`aucun changement n'a été effectué aux stats de ${monMage} `);
+      console.log(`aucun changement n'a été effectué aux stats de ${monMage.nom} `);
       break;
   }
 }
