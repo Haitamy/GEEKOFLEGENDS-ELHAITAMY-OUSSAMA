@@ -154,6 +154,24 @@ export function tour() {
         `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
+    } else if (monArcher.pv == 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
+        boss.pv -= monGuerrier.pv;
+      console.log(
+        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else if (monArcher.pv == 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
+        boss.pv -= monMage.pv;
+      console.log(
+        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv == 0) {
+        boss.pv -= monArcher.pv;
+      console.log(
+        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
     }
 
 
