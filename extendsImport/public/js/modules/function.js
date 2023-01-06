@@ -10,23 +10,20 @@ export function enigme(boss) {
     soluce.push(`soleil`)
     let hasard = parseInt(Math.random()*3)
     let reponse = prompt(`Pour gagner, vous devez répondre à cette énigme en un mot : ${enigme[hasard]}`) 
-    for (reponse ; i < 3; i++) {
-        if (reponse!=soluce[hasard]) {
-            alert(`Féliciation, vous avez vaincu ${boss}`)
-        }
-        
-    }
-    let i = 0
-    while (i<3 || reponse!=soluce[hasard]) {
-        
-    }
     if (reponse==soluce[hasard]) {
         console.log(`Féliciation, vous avez vaincu ${boss}`)
     }else{
         reponse=prompt(`FAUUUUX ! 2e chance : ${enigme[hasard]}`)
         if (reponse==soluce[hasard]) {
             console.log(`Féliciation, vous avez vaincu ${boss}`)
-        } else {}
+        } else {
+            reponse=prompt(`FAUUUUX ! Dernière chance : ${enigme[hasard]}`)
+            if (reponse==soluce[hasard]) {
+                console.log(`Féliciation, vous avez vaincu ${boss}`)
+            } else{
+                console.log(`Vous avez perdu, ${boss} vient d'arracher ta grand-mère !`)
+            }
+        }
     }
 
 

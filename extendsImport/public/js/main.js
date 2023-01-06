@@ -1,3 +1,3 @@
 import { enigme } from "./modules/function.js";
-
-enigme()
+import { venom } from "./modules/instance.js";
+enigme(venom.nom)
