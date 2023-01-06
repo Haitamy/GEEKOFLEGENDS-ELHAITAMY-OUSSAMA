@@ -31,6 +31,6 @@ export function enigme(boss) {
 
 export function lowHP(boss) {
     if (boss.pv<=20) {
-        
+        enigme(boss)
     }
 }

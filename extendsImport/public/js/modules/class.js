@@ -23,3 +23,15 @@ export class Guerrier extends Heros {
         this.rage=rage
     }
 }
+export class Mage extends Heros {
+    constructor(nom,pv,pa,mana){
+        super(nom,pv,pa)
+        this.mana=mana
+    }
+}
+export class Archer extends Heros {
+    constructor(nom,pv,pa,fleche){
+        super(nom,pv,pa)
+        this.fleche=fleche
+    }
+}
