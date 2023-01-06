@@ -1,4 +1,4 @@
-export class Perso {
+class Perso {
     constructor(nom,pv,pa){
         this.nom = nom
         this.pv=pv
@@ -11,7 +11,7 @@ export class Boss extends Perso {
     }
 }
 
-export class Heros extends Perso {
+class Heros extends Perso {
     constructor(nom,pv,pa){
         super(nom,pv,pa)
     }
