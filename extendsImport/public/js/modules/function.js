@@ -1,4 +1,4 @@
-import { trynda,  } from "./instance.js";
+import { trynda, ashe, xerath } from "./instance.js";
 
 export function rage(tour) {
   if (tour % 4 == 0) {
@@ -12,29 +12,51 @@ export function rage(tour) {
   }
 }
 
-export function defense(actionTrynda) {
-    while (actionTrynda != 'a') {
-        
-    }
-    switch (actionTrynda) {
-        case 'd':
-            trynda.pa=trynda.pa*0.5
-            trynda.pv=trynda.pv*2.5
-            console.log(`Trynda est désormais un défenseur. Nouvelles stats : pa : ${trynda.pa}, pv : ${trynda.pv} `);
-            break;
-        case 'a':
-            trynda.pa=trynda.pa*1.4
-            trynda.pv=trynda.pv*0.75
-            console.log(`Trynda est désormais un attaquant. Nouvelles stats : pa : ${trynda.pa}, pv : ${trynda.pv} `);
-            break;
-        case 'n':
-            console.log(`aucun changement n'a été effectué aux stats de Trynda `);
-            break;
-    
-        
-    }
+export function actionAshe() {
+  let action = prompt("action de Ashe ? (a/d ou rien)");
+  switch (action) {
+    case "d":
+      ashe.pa = ashe.pa * 0.5;
+      ashe.pv = ashe.pv * 2.5;
+      console.log(
+        `Ashe est désormais un défenseur. Nouvelles stats : pa : ${ashe.pa}, pv : ${ashe.pv} `
+      );
+      break;
+    case "a":
+      ashe.pa = ashe.pa * 1.4;
+      ashe.pv = ashe.pv * 0.75;
+      console.log(
+        `Ashe est désormais un attaquant. Nouvelles stats : pa : ${ashe.pa}, pv : ${ashe.pv} `
+      );
+      break;
+    default:
+      console.log(`aucun changement n'a été effectué aux stats de Ashe `);
+      break;
+  }
 }
 
+export function actionTrynda() {
+  let action = prompt("action de Tryndamere ? (a/d ou rien)");
+  switch (action) {
+    case "d":
+      trynda.pa = trynda.pa * 0.5;
+      trynda.pv = trynda.pv * 2.5;
+      console.log(
+        `Trynda est désormais un défenseur. Nouvelles stats : pa : ${trynda.pa}, pv : ${trynda.pv} `
+      );
+      break;
+    case "a":
+      trynda.pa = trynda.pa * 1.4;
+      trynda.pv = trynda.pv * 0.75;
+      console.log(
+        `Trynda est désormais un attaquant. Nouvelles stats : pa : ${trynda.pa}, pv : ${trynda.pv} `
+      );
+      break;
+    default:
+      console.log(`aucun changement n'a été effectué aux stats de Trynda `);
+      break;
+  }
+}
 
 export function enigme(boss) {
   let enigme = [];
@@ -52,19 +74,19 @@ export function enigme(boss) {
     `Pour gagner, vous devez répondre à cette énigme en un mot : ${enigme[hasard]}`
   );
   if (reponse == soluce[hasard]) {
-    console.log(`Féliciation, vous avez vaincu ${boss}`);
+    boss.pv=0
   } else {
     reponse = prompt(`FAUUUUX ! 2e chance : ${enigme[hasard]}`);
     if (reponse == soluce[hasard]) {
-      console.log(`Féliciation, vous avez vaincu ${boss}`);
+      boss.pv=0
     } else {
       reponse = prompt(`FAUUUUX ! Dernière chance : ${enigme[hasard]}`);
       if (reponse == soluce[hasard]) {
-        console.log(`Féliciation, vous avez vaincu ${boss}`);
+        boss.pv=0
       } else {
-        console.log(
-          `Vous avez perdu, ${boss} vient d'arracher ta grand-mère !`
-        );
+        ashe.pv=0
+        trynda.pv=0
+        xerath.pv=0
       }
     }
   }
