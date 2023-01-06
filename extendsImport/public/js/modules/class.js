@@ -16,3 +16,10 @@ export class Heros extends Perso {
         super(nom,pv,pa)
     }
 }
+
+export class Guerrier extends Heros {
+    constructor(nom,pv,pa,rage){
+        super(nom,pv,pa)
+        this.rage=rage
+    }
+}
