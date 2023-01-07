@@ -1,5 +1,6 @@
 import { monGuerrier, monArcher, monMage, boss } from "./instance.js";
 
+//demande le nom des héros
 function nomHeros() {
   monArcher.nom = prompt(
     `Bienvenue sur Geek Of Legends, pour commencer vous devez choisir un nom pour votre Archer`
@@ -7,7 +8,7 @@ function nomHeros() {
   monGuerrier.nom = prompt(`Maintenant, choisissez un nom pour votre guerrier`);
   monMage.nom = prompt(`Enfin, choisissez un nom pour votre Mage`);
 }
-
+//demande le nombre de pv de chaque champion en forçant le type Number
 function pvHeros() {
   do {
     let pv = 200;
@@ -49,7 +50,7 @@ function pvHeros() {
     }
   } while (monArcher.pv + monGuerrier.pv + monMage.pv > 200);
 }
-
+//demande le nombre de pa de chaque champion en forçant le type Number
 function paHeros() {
   do {
     let pa = 50;
@@ -91,9 +92,9 @@ function paHeros() {
     }
   } while (monArcher.pa + monGuerrier.pa + monMage.pa > 200);
 }
-
+//demande l'action pour l'archer
 function actionMonArcher() {
-  let _actionMonArcher = prompt(`action de ${monArcher} ? (a/d ou rien)`);
+  let _actionMonArcher = prompt(`action de ${monArcher.nom} ? (a/d ou rien)`);
   switch (_actionMonArcher) {
     case "d":
       monArcher.pa = monArcher.pa * 0.5;
@@ -116,7 +117,7 @@ function actionMonArcher() {
       break;
   }
 }
-
+//demande l'action pour le mage
 function actionMonMage() {
   let _actionMonMage = prompt(`action de ${monMage.nom} ? (a/d ou rien)`);
   switch (_actionMonMage) {
@@ -141,7 +142,7 @@ function actionMonMage() {
       break;
   }
 }
-
+//demande l'action pour le guerrier
 function actionMonGuerrier() {
   let _actionMonGuerrier = prompt(
     `action de ${monGuerrier.nom} ? (a/d ou rien)`
@@ -168,20 +169,20 @@ function actionMonGuerrier() {
       break;
   }
 }
-
+//regroupe les 3 fonctions précédentes
 function monAction() {
   actionMonArcher();
   actionMonMage();
   actionMonGuerrier();
 }
-
+//regroupe toutes les fonctions précédentes
 function mesHeros() {
   nomHeros();
   pvHeros();
   paHeros();
   monAction();
 }
-
+//définit aléatoirement le mana et gère le mana par tour
 function mana() {
   let mana = [7, 9, 11];
   let random = parseInt(Math.random() * 3);
@@ -193,10 +194,10 @@ function mana() {
     monMage.mana = 7;
   } else {
     monMage.pa = dmgMage;
-    monMage -= 2;
+    monMage.mana -= 2;
   }
 }
-
+//définit aléatoirement les flèches et gère les flèches par tour
 function fleche() {
   let fleche = [7, 8, 9, 10, 11];
   let random = parseInt(Math.random() * 3);
@@ -212,7 +213,7 @@ function fleche() {
     monArcher.fleche += 1;
   }
 }
-
+//gère la rage par tour
 function rage() {
   let dmgGuerrier = monGuerrier.pa;
   if (monGuerrier.rage == 4) {
@@ -223,7 +224,7 @@ function rage() {
     monGuerrier.rage += 1;
   }
 }
-
+//randomize la personne attaquée par le boss
 function bossAttack() {
   if (chanceMonArcher < chanceMonGuerrier && chancemonArcher < chanceMonMage) {
     monArcher.pv -= boss.pa;
@@ -280,7 +281,7 @@ function bossAttack() {
     }
   }
 }
-
+//Pose une des 3 énigmes au hasard
 function enigme() {
   let enigme = [];
   let soluce = [];
@@ -320,7 +321,7 @@ function enigme() {
     }
   }
 }
-
+//la bagarre
 function combat() {
   let teamPV = monArcher.pv + monGuerrier.pv + monMage.pv;
   while (boss.pv > 20 || teamPV > 0) {
@@ -406,7 +407,7 @@ function combat() {
     enigme(boss);
   }
 }
-
+//regroupe la création des héros et le combat
 export function myGame() {
   mesHeros();
   combat();
