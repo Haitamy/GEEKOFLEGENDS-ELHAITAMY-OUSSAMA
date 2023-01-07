@@ -11,10 +11,10 @@ function nomHeros() {
 //demande le nombre de pv de chaque champion en forçant le type Number
 function pvHeros() {
   do {
-    let pv = 200;
+    let pv = 150;
     monArcher.pv = parseInt(
       prompt(
-        `Vous devez désormais répartir 200 points de vie entre vos héros, commençons par ${monArcher.nom} (si vous dépasser les 200 pv de groupe, vous devrez recommencer)`
+        `Vous devez désormais répartir 150 points de vie entre vos héros, commençons par ${monArcher.nom} (si vous dépasser les 150 pv de groupe, vous devrez recommencer)`
       )
     );
     while (Number.isNaN(monArcher.pv) === true) {
@@ -48,15 +48,15 @@ function pvHeros() {
         prompt(`Veuillez entrer une quantité valide de pv pour ${monMage.nom}`)
       );
     }
-  } while (monArcher.pv + monGuerrier.pv + monMage.pv > 200);
+  } while (monArcher.pv + monGuerrier.pv + monMage.pv > 150);
 }
 //demande le nombre de pa de chaque champion en forçant le type Number
 function paHeros() {
   do {
-    let pa = 50;
+    let pa = 30;
     monArcher.pa = parseInt(
       prompt(
-        `Vous devez désormais répartir 50 points d'action entre vos héros, commençons par ${monArcher.nom} (si vous dépasser les 50 pa de groupe, vous devrez recommencer)`
+        `Vous devez désormais répartir 30 points d'action entre vos héros, commençons par ${monArcher.nom} (si vous dépasser les 30 pa de groupe, vous devrez recommencer)`
       )
     );
     while (Number.isNaN(monArcher.pa) === true) {
@@ -90,7 +90,7 @@ function paHeros() {
         prompt(`Veuillez entrer une quantité valide de pa pour ${monMage.nom}`)
       );
     }
-  } while (monArcher.pa + monGuerrier.pa + monMage.pa > 200);
+  } while (monArcher.pa + monGuerrier.pa + monMage.pa > 30);
 }
 //demande l'action pour l'archer
 function actionMonArcher() {
@@ -226,7 +226,10 @@ function rage() {
 }
 //randomize la personne attaquée par le boss
 function bossAttack() {
-  if (chanceMonArcher < chanceMonGuerrier && chancemonArcher < chanceMonMage) {
+    let chanceMonArcher = Math.random()
+    let chanceMonGuerrier =Math.random()
+    let chanceMonMage =Math.random()
+  if (chanceMonArcher < chanceMonGuerrier && chanceMonArcher < chanceMonMage) {
     monArcher.pv -= boss.pa;
     if (monArcher.pv > 0) {
       console.log(

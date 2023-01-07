@@ -7,11 +7,7 @@ export let monGuerrier = new Guerrier('', '', '', 0)
 export let monArcher = new Archer('', '', '',0)
 export let monMage = new Mage('', '', '',0)
 let random = parseInt(Math.random()*3)
-export let choixBoss =[venom ,father,dio]
+let choixBoss =[venom ,father,dio]
 export let boss = choixBoss[random]
-export let chanceArcher = Math.random()
-export let chanceGuerrier =Math.random()
-export let chanceMage =Math.random()
-
 
 
