@@ -89,19 +89,36 @@ function paHeros() {
     }
   } while (monArcher.pa + monGuerrier.pa + monMage.pa > 200);
 }
-// function mana() {
-//   let mana = [7, 9, 11];
-//   let random = parseInt(Math.random() * 3);
-//   let dmgArcher = monArcher.pa;
-//   monMage.mana = mana[random];
+function mana() {
+  let mana = [7, 9, 11];
+  let random = parseInt(Math.random() * 3);
+  let dmgMage = monMage.pa;
+  monMage.mana = mana[random];
 
-//   if (monMage.mana == 0) {
-//     monArcher.pa = 0;
-//     monMage.mana = mana[random];
-//   } else {
-//     monArcher.pa = dmgArcher;
-//   }
-// }
+  if (monMage.mana == 0) {
+    monMage.pa = 0;
+    monMage.mana = 7;
+  } else {
+    monMage.pa = dmgMage;
+    monMage-=2
+  }
+}
+
+function fleche() {
+    let fleche = [7,8,9,10,11]
+    let random = parseInt(Math.random() * 3);
+    let dmgArcher = monArcher.pa
+    monArcher.fleche =fleche[random]
+
+    if (monArcher.fleche == 0) {
+        monArcher.pa = 0
+        monArcher.fleche = 6
+    } else{
+        monArcher.pa = dmgArcher
+        monArcher.fleche -= 2
+        monArcher.fleche += 1
+    }
+}
 
 export function mesHeros() {
   nomHeros();
@@ -112,62 +129,63 @@ export function tour() {
   let teamPV = monArcher.pv + monGuerrier.pv + monMage.pv;
   while (boss.pv > 20 || teamPV > 0) {
     if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv > 0) {
-      boss.pv -= monArcher.pv;
+      boss.pv -= monArcher.pa;
       console.log(
         `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
       );
-      boss.pv -= monGuerrier.pv;
+      boss.pv -= monGuerrier.pa;
       console.log(
         `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
       );
-      boss.pv -= monMage.pv;
+      boss.pv -= monMage.pa;
       console.log(
         `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
     } else if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
+        boss.pv -= monArcher.pa;
       console.log(
         `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
       );
-      boss.pv -= monGuerrier.pv;
+      boss.pv -= monGuerrier.pa;
       console.log(
         `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
     } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
-      boss.pv -= monArcher.pv;
+      boss.pv -= monArcher.pa;
       console.log(
         `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
       );
-      boss.pv -= monMage.pv;
+      boss.pv -= monMage.pa;
       console.log(
         `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
     } else if (monArcher.pv == 0 && monGuerrier.pv > 0 && monMage.pv > 0) {
-      boss.pv -= monGuerrier.pv;
+      boss.pv -= monGuerrier.pa;
       console.log(
         `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
       );
-      boss.pv -= monMage.pv;
+      boss.pv -= monMage.pa;
       console.log(
         `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
     } else if (monArcher.pv == 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
-      boss.pv -= monGuerrier.pv;
+      boss.pv -= monGuerrier.pa;
       console.log(
         `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
     } else if (monArcher.pv == 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
-      boss.pv -= monMage.pv;
+      boss.pv -= monMage.pa;
       console.log(
         `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
       );
       bossAttack();
     } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv == 0) {
-      boss.pv -= monArcher.pv;
+      boss.pv -= monArcher.pa;
       console.log(
         `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
       );
