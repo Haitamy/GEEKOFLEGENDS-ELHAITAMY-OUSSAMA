@@ -1,4 +1,2 @@
-import { mesHeros, combat} from "./modules/function.js";
-
-mesHeros()
-combat()
+import { myGame } from "./modules/function.js";
+myGame();
