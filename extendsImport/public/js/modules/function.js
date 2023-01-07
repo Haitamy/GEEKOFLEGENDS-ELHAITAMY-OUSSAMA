@@ -7,6 +7,7 @@ function nomHeros() {
   monGuerrier.nom = prompt(`Maintenant, choisissez un nom pour votre guerrier`);
   monMage.nom = prompt(`Enfin, choisissez un nom pour votre Mage`);
 }
+
 function pvHeros() {
   do {
     let pv = 200;
@@ -48,6 +49,7 @@ function pvHeros() {
     }
   } while (monArcher.pv + monGuerrier.pv + monMage.pv > 200);
 }
+
 function paHeros() {
   do {
     let pa = 50;
@@ -89,6 +91,97 @@ function paHeros() {
     }
   } while (monArcher.pa + monGuerrier.pa + monMage.pa > 200);
 }
+
+function actionMonArcher() {
+  let _actionMonArcher = prompt(`action de ${monArcher} ? (a/d ou rien)`);
+  switch (_actionMonArcher) {
+    case "d":
+      monArcher.pa = monArcher.pa * 0.5;
+      monArcher.pv = monArcher.pv * 2.5;
+      console.log(
+        `${monArcher.nom} est désormais un défenseur. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
+      );
+      break;
+    case "a":
+      monArcher.pa = monArcher.pa * 1.4;
+      monArcher.pv = monArcher.pv * 0.75;
+      console.log(
+        `${monArcher.nom} est désormais un attaquant. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
+      );
+      break;
+    default:
+      console.log(
+        `aucun changement n'a été effectué aux stats de ${monArcher.nom} `
+      );
+      break;
+  }
+}
+
+function actionMonMage() {
+  let _actionMonMage = prompt(`action de ${monMage.nom} ? (a/d ou rien)`);
+  switch (_actionMonMage) {
+    case "d":
+      monMage.pa = monMage.pa * 0.5;
+      monMage.pv = monMage.pv * 2.5;
+      console.log(
+        `${monMage.nom} est désormais un défenseur. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
+      );
+      break;
+    case "a":
+      monMage.pa = monMage.pa * 1.4;
+      monMage.pv = monMage.pv * 0.75;
+      console.log(
+        `${monMage.nom} est désormais un attaquant. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
+      );
+      break;
+    default:
+      console.log(
+        `aucun changement n'a été effectué aux stats de ${monMage.nom} `
+      );
+      break;
+  }
+}
+
+function actionMonGuerrier() {
+  let _actionMonGuerrier = prompt(
+    `action de ${monGuerrier.nom} ? (a/d ou rien)`
+  );
+  switch (_actionMonGuerrier) {
+    case "d":
+      monGuerrier.pa = monGuerrier.pa * 0.5;
+      monGuerrier.pv = monGuerrier.pv * 2.5;
+      console.log(
+        `${monGuerrier.nom} est désormais un défenseur. Nouvelles stats : pa : ${monGuerrier.pa}, pv : ${monGuerrier.pv} `
+      );
+      break;
+    case "a":
+      monGuerrier.pa = monGuerrier.pa * 1.4;
+      monGuerrier.pv = monGuerrier.pv * 0.75;
+      console.log(
+        `${monGuerrier.nom} est désormais un attaquant. Nouvelles stats : pa : ${monGuerrier.pa}, pv : ${monGuerrier.pv} `
+      );
+      break;
+    default:
+      console.log(
+        `aucun changement n'a été effectué aux stats de ${monGuerrier.nom} `
+      );
+      break;
+  }
+}
+
+function monAction() {
+  actionMonArcher();
+  actionMonMage();
+  actionMonGuerrier();
+}
+
+export function mesHeros() {
+  nomHeros();
+  pvHeros();
+  paHeros();
+  monAction();
+}
+
 function mana() {
   let mana = [7, 9, 11];
   let random = parseInt(Math.random() * 3);
@@ -119,109 +212,19 @@ function fleche() {
     monArcher.fleche += 1;
   }
 }
+
 function rage() {
-    let dmgGuerrier = monGuerrier.pa
-    if (monGuerrier.rage == 4) {
-      monGuerrier.pa *= 1.25;
-      monGuerrier.rage = 0;
-    } else {
-      monGuerrier.pa = dmgGuerrier;
-      monGuerrier.rage += 1
-    }
-  }
-export function mesHeros() {
-  nomHeros();
-  pvHeros();
-  paHeros();
-}
-export function tour() {
-  let teamPV = monArcher.pv + monGuerrier.pv + monMage.pv;
-  while (boss.pv > 20 || teamPV > 0) {
-    if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv > 0) {
-        fleche()
-      boss.pv -= monArcher.pa;
-      console.log(
-        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      rage()
-      boss.pv -= monGuerrier.pa;
-      console.log(
-        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      mana()
-      boss.pv -= monMage.pa;
-      console.log(
-        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      bossAttack();
-    } else if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
-        fleche()
-      boss.pv -= monArcher.pa;
-      console.log(
-        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      rage()
-      boss.pv -= monGuerrier.pa;
-      console.log(
-        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      bossAttack();
-    } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
-        fleche()
-      boss.pv -= monArcher.pa;
-      console.log(
-        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      mana()
-      boss.pv -= monMage.pa;
-      console.log(
-        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      bossAttack();
-    } else if (monArcher.pv == 0 && monGuerrier.pv > 0 && monMage.pv > 0) {
-        rage()
-      boss.pv -= monGuerrier.pa;
-      console.log(
-        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      mana()
-      boss.pv -= monMage.pa;
-      console.log(
-        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      bossAttack();
-    } else if (monArcher.pv == 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
-        rage()
-      boss.pv -= monGuerrier.pa;
-      console.log(
-        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      bossAttack();
-    } else if (monArcher.pv == 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
-        mana()
-      boss.pv -= monMage.pa;
-      console.log(
-        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      bossAttack();
-    } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv == 0) {
-        fleche()
-      boss.pv -= monArcher.pa;
-      console.log(
-        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
-      );
-      bossAttack();
-    } else {
-      console.log(`Tous vos Héros sont morts, Fin de la partie..`);
-    }
-  }
-  if (boss.pv <= 20) {
-    enigme(boss);
+  let dmgGuerrier = monGuerrier.pa;
+  if (monGuerrier.rage == 4) {
+    monGuerrier.pa *= 1.25;
+    monGuerrier.rage = 0;
+  } else {
+    monGuerrier.pa = dmgGuerrier;
+    monGuerrier.rage += 1;
   }
 }
 
-
-export function bossAttack() {
+function bossAttack() {
   if (chanceMonArcher < chanceMonGuerrier && chancemonArcher < chanceMonMage) {
     monArcher.pv -= boss.pa;
     if (monArcher.pv > 0) {
@@ -278,88 +281,7 @@ export function bossAttack() {
   }
 }
 
-function actionMonArcher() {
-  let _actionMonArcher = prompt(`action de ${monArcher} ? (a/d ou rien)`);
-  switch (_actionMonArcher) {
-    case "d":
-      monArcher.pa = monArcher.pa * 0.5;
-      monArcher.pv = monArcher.pv * 2.5;
-      console.log(
-        `${monArcher.nom} est désormais un défenseur. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
-      );
-      break;
-    case "a":
-      monArcher.pa = monArcher.pa * 1.4;
-      monArcher.pv = monArcher.pv * 0.75;
-      console.log(
-        `${monArcher.nom} est désormais un attaquant. Nouvelles stats : pa : ${monArcher.pa}, pv : ${monArcher.pv} `
-      );
-      break;
-    default:
-      console.log(
-        `aucun changement n'a été effectué aux stats de ${monArcher.nom} `
-      );
-      break;
-  }
-}
-function actionMonMage() {
-  let _actionMonMage = prompt(`action de ${monMage.nom} ? (a/d ou rien)`);
-  switch (_actionMonMage) {
-    case "d":
-      monMage.pa = monMage.pa * 0.5;
-      monMage.pv = monMage.pv * 2.5;
-      console.log(
-        `${monMage.nom} est désormais un défenseur. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
-      );
-      break;
-    case "a":
-      monMage.pa = monMage.pa * 1.4;
-      monMage.pv = monMage.pv * 0.75;
-      console.log(
-        `${monMage.nom} est désormais un attaquant. Nouvelles stats : pa : ${monMage.pa}, pv : ${monMage.pv} `
-      );
-      break;
-    default:
-      console.log(
-        `aucun changement n'a été effectué aux stats de ${monMage.nom} `
-      );
-      break;
-  }
-}
-
-function actionMonGuerrier() {
-  let _actionMonGuerrier = prompt(
-    `action de ${monGuerrier.nom} ? (a/d ou rien)`
-  );
-  switch (_actionMonGuerrier) {
-    case "d":
-      monGuerrier.pa = monGuerrier.pa * 0.5;
-      monGuerrier.pv = monGuerrier.pv * 2.5;
-      console.log(
-        `${monGuerrier.nom} est désormais un défenseur. Nouvelles stats : pa : ${monGuerrier.pa}, pv : ${monGuerrier.pv} `
-      );
-      break;
-    case "a":
-      monGuerrier.pa = monGuerrier.pa * 1.4;
-      monGuerrier.pv = monGuerrier.pv * 0.75;
-      console.log(
-        `${monGuerrier.nom} est désormais un attaquant. Nouvelles stats : pa : ${monGuerrier.pa}, pv : ${monGuerrier.pv} `
-      );
-      break;
-    default:
-      console.log(
-        `aucun changement n'a été effectué aux stats de ${monGuerrier.nom} `
-      );
-      break;
-  }
-}
-export function monAction() {
-  actionMonArcher();
-  actionMonMage();
-  actionMonGuerrier();
-}
-
-export function enigme() {
+function enigme() {
   let enigme = [];
   let soluce = [];
   enigme.push(`Quel est le pain préféré du magicien ?`); //la baguette
@@ -396,5 +318,91 @@ export function enigme() {
         );
       }
     }
+  }
+}
+
+export function combat() {
+  let teamPV = monArcher.pv + monGuerrier.pv + monMage.pv;
+  while (boss.pv > 20 || teamPV > 0) {
+    if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv > 0) {
+      fleche();
+      boss.pv -= monArcher.pa;
+      console.log(
+        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      rage();
+      boss.pv -= monGuerrier.pa;
+      console.log(
+        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      mana();
+      boss.pv -= monMage.pa;
+      console.log(
+        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
+      fleche();
+      boss.pv -= monArcher.pa;
+      console.log(
+        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      rage();
+      boss.pv -= monGuerrier.pa;
+      console.log(
+        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
+      fleche();
+      boss.pv -= monArcher.pa;
+      console.log(
+        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      mana();
+      boss.pv -= monMage.pa;
+      console.log(
+        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else if (monArcher.pv == 0 && monGuerrier.pv > 0 && monMage.pv > 0) {
+      rage();
+      boss.pv -= monGuerrier.pa;
+      console.log(
+        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      mana();
+      boss.pv -= monMage.pa;
+      console.log(
+        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else if (monArcher.pv == 0 && monGuerrier.pv > 0 && monMage.pv == 0) {
+      rage();
+      boss.pv -= monGuerrier.pa;
+      console.log(
+        `${monGuerrier.nom} attaque ${boss.nom} et lui inflige ${monGuerrier.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else if (monArcher.pv == 0 && monGuerrier.pv == 0 && monMage.pv > 0) {
+      mana();
+      boss.pv -= monMage.pa;
+      console.log(
+        `${monMage.nom} attaque ${boss.nom} et lui inflige ${monMage.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else if (monArcher.pv > 0 && monGuerrier.pv == 0 && monMage.pv == 0) {
+      fleche();
+      boss.pv -= monArcher.pa;
+      console.log(
+        `${monArcher.nom} attaque ${boss.nom} et lui inflige ${monArcher.pa} dégats le laissant à ${boss.pv} pv`
+      );
+      bossAttack();
+    } else {
+      console.log(`Tous vos Héros sont morts, Fin de la partie..`);
+    }
+  }
+  if (boss.pv <= 20) {
+    enigme(boss);
   }
 }
