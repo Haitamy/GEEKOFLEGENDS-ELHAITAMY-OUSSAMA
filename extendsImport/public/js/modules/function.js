@@ -175,7 +175,7 @@ function monAction() {
   actionMonGuerrier();
 }
 
-export function mesHeros() {
+function mesHeros() {
   nomHeros();
   pvHeros();
   paHeros();
@@ -321,7 +321,7 @@ function enigme() {
   }
 }
 
-export function combat() {
+function combat() {
   let teamPV = monArcher.pv + monGuerrier.pv + monMage.pv;
   while (boss.pv > 20 || teamPV > 0) {
     if (monArcher.pv > 0 && monGuerrier.pv > 0 && monMage.pv > 0) {
@@ -405,4 +405,9 @@ export function combat() {
   if (boss.pv <= 20) {
     enigme(boss);
   }
+}
+
+export function myGame() {
+  mesHeros();
+  combat();
 }
