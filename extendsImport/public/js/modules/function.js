@@ -5,8 +5,21 @@ function nomHeros() {
   monArcher.nom = prompt(
     `Bienvenue sur Geek Of Legends, pour commencer vous devez choisir un nom pour votre Archer`
   );
+  while (monArcher.nom.includes(" ") || monArcher.nom == "") {
+    monArcher.nom = prompt(
+      `Bienvenue sur Geek Of Legends, pour commencer vous devez choisir un nom pour votre Archer`
+    );
+  }
   monGuerrier.nom = prompt(`Maintenant, choisissez un nom pour votre guerrier`);
+  while (monGuerrier.nom.includes(" ") || monGuerrier.nom == "") {
+    monGuerrier.nom = prompt(
+      `Maintenant, choisissez un nom pour votre guerrier`
+    );
+  }
   monMage.nom = prompt(`Enfin, choisissez un nom pour votre Mage`);
+  while (monMage.nom.includes(" ") || monMage.nom == "") {
+    monMage.nom = prompt(`Enfin, choisissez un nom pour votre Mage`);
+  }
 }
 //demande le nombre de pv de chaque champion en forçant le type Number
 function pvHeros() {
