@@ -221,6 +221,9 @@ function rage() {
   if (monGuerrier.rage == 4) {
     monGuerrier.pa *= 1.25;
     monGuerrier.rage = 0;
+    console.log(
+      `${monGuerrier.nom} perd ses points de rage pour augmenter son attaque`
+    );
   } else {
     monGuerrier.pa = dmgGuerrier;
     monGuerrier.rage += 1;
@@ -231,32 +234,45 @@ function bossAttack() {
   let chanceMonArcher = Math.random();
   let chanceMonGuerrier = Math.random();
   let chanceMonMage = Math.random();
-  if (chanceMonArcher < chanceMonGuerrier && chanceMonArcher < chanceMonMage) {
+  if (monArcher.pv <= 0) {
+    chanceMonArcher = 0;
+  }
+  if (monGuerrier.pv <= 0) {
+    chanceMonGuerrier = 0;
+  }
+  if (monMage.pv <= 0) {
+    chanceMonMage = 0;
+  }
+  if (chanceMonArcher > chanceMonGuerrier && chanceMonArcher > chanceMonMage) {
     monArcher.pv -= boss.pa;
     if (monArcher.pv > 0) {
       console.log(
         `${monArcher.nom} a été attaqué par ${boss.nom} qui lui a causé ${boss.pa} dégats le laissant à ${monArcher.pv} pv`
       );
-      if (actionMonGuerrier == "d") {
-        chanceMonGuerrier += 0.5;
-      } else {
-        chanceMonGuerrier += 1;
+      if (monGuerrier.pv > 0) {
+        if (actionMonGuerrier == "d") {
+          chanceMonGuerrier += 1;
+        } else {
+          chanceMonGuerrier += 0.5;
+        }
       }
-      if (actionMonMage == "d") {
-        chanceMonMage += 0.5;
-      } else {
-        chanceMonMage += 1;
+      if (monMage.pv > 0) {
+        if (actionMonMage == "d") {
+          chanceMonMage += 1;
+        } else {
+          chanceMonMage += 0.5;
+        }
       }
     } else {
       console.log(
         `${boss.nom} vient de tuer ${monArcher.nom} en lui infligeant ${boss.pa} dégats`
       );
     }
-    chanceMonArcher =Math.random()
+    chanceMonArcher = Math.random();
   }
   if (
-    chanceMonGuerrier < chanceMonArcher &&
-    chanceMonGuerrier < chanceMonMage
+    chanceMonGuerrier > chanceMonArcher &&
+    chanceMonGuerrier > chanceMonMage
   ) {
     monGuerrier.pv -= boss.pa;
     if (monGuerrier.pv > 0) {
@@ -264,46 +280,54 @@ function bossAttack() {
         `${monGuerrier.nom} a été attaqué par ${boss.nom} qui lui a causé ${boss.pa} dégats le laissant à ${monGuerrier.pv} pv`
       );
 
-      if (actionMonArcher == "d") {
-        chanceMonArcher += 0.5;
-      } else {
-        chanceMonArcher += 1;
+      if (monMage.pv > 0) {
+        if (actionMonMage == "d") {
+          chanceMonMage += 1;
+        } else {
+          chanceMonMage += 0.5;
+        }
       }
-      if (actionMonMage == "d") {
-        chanceMonMage += 0.5;
-      } else {
-        chanceMonMage += 1;
+      if (monArcher.pv > 0) {
+        if (actionMonArcher == "d") {
+          chanceMonAactionMonArcher += 1;
+        } else {
+          chanceMonAactionMonArcher += 0.5;
+        }
       }
     } else {
       console.log(
         `${boss.nom} vient de tuer ${monGuerrier.nom} en lui infligeant ${boss.pa} dégats`
       );
     }
-    chanceMonArcher =Math.random()
+    chanceMonArcher = Math.random();
   }
-  if (chanceMonMage < chanceMonGuerrier && chanceMonMage < chanceMonArcher) {
+  if (chanceMonMage > chanceMonGuerrier && chanceMonMage > chanceMonArcher) {
     monMage.pv -= boss.pa;
     if (monMage.pv > 0) {
       console.log(
         `${monMage.nom} a été attaqué par ${boss.nom} qui lui a causé ${boss.pa} dégats le laissant à ${monMage.pv} pv`
       );
 
-      if (actionMonGuerrier == "d") {
-        chanceMonGuerrier += 0.5;
-      } else {
-        chanceMonGuerrier += 1;
+      if (monGuerrier.pv > 0) {
+        if (actionMonGuerrier == "d") {
+          chanceMonGuerrier += 1;
+        } else {
+          chanceMonGuerrier += 0.5;
+        }
       }
-      if (actionMonArcher == "d") {
-        chanceMonArcher += 0.5;
-      } else {
-        chanceMonArcher += 1;
+      if (monArcher.pv > 0) {
+        if (actionMonArcher == "d") {
+          chanceMonAactionMonArcher += 1;
+        } else {
+          chanceMonAactionMonArcher += 0.5;
+        }
       }
     } else {
       console.log(
         `${boss.nom} vient de tuer ${monMage.nom} en lui infligeant ${boss.pa} dégats`
       );
     }
-    chanceMonArcher =Math.random()
+    chanceMonArcher = Math.random();
   }
 }
 //Pose une des 3 énigmes au hasard
@@ -463,7 +487,7 @@ function combat() {
       }
       alert(`fin tour ${i}`);
       i++;
-    } else {
+    } else if (monArcher.pv == 0 && monGuerrier.pv == 0 && monMage.pv == 0) {
       console.log(`Tous vos Héros sont morts, Fin de la partie..`);
     }
   }
